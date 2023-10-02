@@ -352,8 +352,8 @@ class WuerstchenDecoderPipeline(DiffusionPipeline):
             ).prev_sample
 
             if callback is not None and i % callback_steps == 0:
-                step_idx = i // getattr("scheduler", "order", 1)
-                callback(step_idx, t, latents)
+                callback_idx = i // getattr("scheduler", "order", 1)
+                callback(callback_idx, t, latents)
 
         # 10. Scale and decode the image latents with vq-vae
         latents = self.vqgan.config.scale_factor * latents

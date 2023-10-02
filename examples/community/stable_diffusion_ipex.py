@@ -817,8 +817,8 @@ class StableDiffusionIPEXPipeline(DiffusionPipeline):
                 if i == len(timesteps) - 1 or ((i + 1) > num_warmup_steps and (i + 1) % self.scheduler.order == 0):
                     progress_bar.update()
                     if callback is not None and i % callback_steps == 0:
-                        step_idx = i // getattr("scheduler", "order", 1)
-                        callback(step_idx, t, latents)
+                        callback_idx = i // getattr("scheduler", "order", 1)
+                        callback(callback_idx, t, latents)
 
         if output_type == "latent":
             image = latents

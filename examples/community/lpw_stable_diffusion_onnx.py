@@ -846,8 +846,8 @@ class OnnxStableDiffusionLongPromptWeightingPipeline(OnnxStableDiffusionPipeline
             # call the callback, if provided
             if i % callback_steps == 0:
                 if callback is not None:
-                    step_idx = i // getattr("scheduler", "order", 1)
-                    callback(step_idx, t, latents)
+                    callback_idx = i // getattr("scheduler", "order", 1)
+                    callback(callback_idx, t, latents)
                 if is_cancelled_callback is not None and is_cancelled_callback():
                     return None
 
